@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(160deg, #0d0f1a 0%, #1a1c2e 40%, #1e1b2d 100%);
+    font-family: 'Noto Serif JP', serif;
+    color: #d4cfc6;
+    padding: 2.5rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* 淡い光の粒 */
+  body::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+      radial-gradient(ellipse 1px 1px at 20% 30%, rgba(180, 160, 210, 0.4), transparent),
+      radial-gradient(ellipse 1px 1px at 70% 20%, rgba(140, 180, 200, 0.3), transparent),
+      radial-gradient(ellipse 1px 1px at 40% 70%, rgba(180, 160, 210, 0.3), transparent),
+      radial-gradient(ellipse 1px 1px at 80% 60%, rgba(160, 140, 200, 0.2), transparent),
+      radial-gradient(ellipse 1px 1px at 10% 80%, rgba(140, 170, 190, 0.3), transparent);
+    animation: drift 20s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(15px, -10px); }
+  }
+
+  .quote-container {
+    max-width: 560px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .quote-mark {
+    font-size: 2.5rem;
+    color: rgba(160, 140, 210, 0.25);
+    margin-bottom: 0.5rem;
+    font-family: Georgia, serif;
+  }
+
+  .quote-text {
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 2;
+    letter-spacing: 0.04em;
+    color: #d4cfc6;
+    margin-bottom: 1.2rem;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(160, 140, 210, 0.3);
+    margin: 0 auto 1rem;
+  }
+
+  .quote-author {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: rgba(160, 140, 210, 0.5);
+    letter-spacing: 0.15em;
+  }
+</style>
+</head>
+<body>
+<div class="quote-container">
+  <div class="quote-mark">❝</div>
+  <p class="quote-text" id="quote"></p>
+  <div class="divider"></div>
+  <p class="quote-author" id="author"></p>
+</div>
+<script>
+const quotes = [
+  { text: "魔法だって剣術だって何だって、\n誰かに褒められた時にちょっと好きになった。", author: "フリーレン" },
+  { text: "人間の寿命は短いのに、\nなんでもっと知ろうとしなかったんだろう。", author: "フリーレン" },
+  { text: "想いっていうのは\n言葉にしないと伝わらないのに。", author: "フリーレン" },
+  { text: "まだたったの10年だよ。\n今会いに行かないと近い未来に後悔するよ。", author: "フリーレン" },
+  { text: "尻尾を巻いて逃げ出すっていう作戦は、\n別に今じゃなくても使えるからね。", author: "フリーレン" },
+  { text: "隠している訳ではないよ。\n確信がないだけだ。", author: "フリーレン" },
+  { text: "私は今の話をしているんだよ。", author: "フリーレン" },
+  { text: "時間の無駄だからね。", author: "フリーレン" },
+  { text: "正直興味はないよ。\nだから見て確かめるんだ。", author: "フリーレン" },
+  { text: "人を騙すっていうのはね、\nとびきりの笑顔で成し遂げるものなんだよ。", author: "フリーレン" },
+  { text: "今更知ったところで\nもう関係ないことばかりだ。\nでも、知りたいと思ったんだ。", author: "フリーレン" },
+  { text: "探し物をしているんだ。\nまだ見つかっていない魔法をね。", author: "フリーレン" },
+];
+
+const pick = quotes[Math.floor(Math.random() * quotes.length)];
+document.getElementById("quote").innerHTML = pick.text.replace(/\n/g, '<br>');
+document.getElementById("author").textContent = `— ${pick.author}`;
+</script>
+</body>
+</html>
